@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rants of an iOS developer</title>
+    <atom:link href="http://example.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://example.com/</link>
+    <description>“Tech blog by Selvin”</description>
+    <pubDate>Mon, 16 Mar 2015 17:40:50 +0530</pubDate>
+    
+      <item>
+        <title>Xcode 6 and Code Formatting</title>
+        <link>http://example.com/2015/03/16/Xcode-6-and-Code-Formatting.html</link>
+        <guid isPermaLink="true">http://example.com/2015/03/16/Xcode-6-and-Code-Formatting.html</guid>
+        <description>&lt;p&gt;Code formatting is necessary for readability. Unfortunately Xcode doesn’t provide code formatting tools out of the box unlike some popular IDEs as of now. That’s where &lt;a href=&quot;https://github.com/travisjeffery/ClangFormat-Xcode&quot;&gt;ClangFormat&lt;/a&gt; come in handy. In this article I am going to explore some tools to make code formatting and your life easier.&lt;/p&gt;
+
+&lt;p&gt;Tables have also been extended from Markdown:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Tool name&lt;/th&gt;
+      &lt;th&gt;What is it?&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;a href=&quot;http://alcatraz.io/&quot;&gt;Alcatraz&lt;/a&gt;&lt;/td&gt;
+      &lt;td&gt;Plugin manager for Xcode&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ClangFormat&lt;/td&gt;
+      &lt;td&gt;Code formatting plugin&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;XAlign&lt;/td&gt;
+      &lt;td&gt;Code alignment plugin&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;installing-alcatraz&quot;&gt;Installing Alcatraz&lt;/h2&gt;
+
+&lt;p&gt;Paste the following in Terminal.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you can manage your Xcode plugins from &lt;code&gt;Window-&amp;gt;PackageManager&lt;/code&gt; menu.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/alcatraz_window.png&quot; alt=&quot;Alcatraz Plugin Manager&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;search-and-install&quot;&gt;Search and Install&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ClangFormat&lt;/li&gt;
+  &lt;li&gt;XAlign&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;plugins.&lt;/p&gt;
+
+&lt;p&gt;After installation restart the Xcode.&lt;/p&gt;
+
+&lt;p&gt;Go to &lt;code&gt;Edit-&amp;gt;Clang Format&lt;/code&gt; and &lt;code&gt;Edit-&amp;gt;XAlign&lt;/code&gt; menus to explore the options those formatters provide.&lt;/p&gt;
+
+&lt;h3 id=&quot;clangformat&quot;&gt;ClangFormat&lt;/h3&gt;
+
+&lt;p&gt;ClangFormat is a powerful code formatter which provides various styles of formatting options to choose from.&lt;/p&gt;
+
+&lt;p&gt;You might want to enable &lt;code&gt;Edit-&amp;gt;Clang Format-&amp;gt;Enable Format on Save&lt;/code&gt;. After enabling this setting simply pressing (&lt;code&gt;⌘+S&lt;/code&gt;). You can start using it Vanilla without any additional configuration. But there is a catch!&lt;/p&gt;
+
+&lt;p&gt;A word of caution! ClangFormat by default imposes an obsolete 80 column restriction over the length of each line of code. Meaning that if a line of code is exceeding 80 characters then that line will be broken in to multiple lines that fit under 80 characters. Some like it because it’s cozy. To many devs this is a big PIA. I would not personally take sides on whether 80 character restriction is a good or bad guideline. It should be a personal preference.&lt;/p&gt;
+
+&lt;p&gt;However, if you like to keep the goodies of Clang format but remove only the 80 column restriction then you have to mess with configurations.&lt;/p&gt;
+
+&lt;p&gt;Create a new plain text file named &lt;code&gt;.clang-format&lt;/code&gt; and paste the following &lt;code&gt;.yml&lt;/code&gt; configuration, or just download &lt;a href=&quot;https://drive.google.com/file/d/0B-CC21e7Rr0ZQmE1bGhrXzBJcXM/view?usp=sharing&quot; target=&quot;_blank&quot;&gt;this file&lt;/a&gt;
+(This file will be treated as a hidden file and can not be seen in &lt;code&gt;Finder&lt;/code&gt; by default. You need to do&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;defaults write com.apple.finder AppleShowAllFiles YES&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;in &lt;code&gt;Terminal&lt;/code&gt; and then relaunch the Finder in order to see the hidden files.)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Language&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Cpp&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# BasedOnStyle:  LLVM&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AccessModifierOffset&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;-2&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ConstructorInitializerIndentWidth&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AlignEscapedNewlinesLeft&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AlignTrailingComments&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowAllParametersOfDeclarationOnNextLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowShortBlocksOnASingleLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowShortCaseLabelsOnASingleLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowShortIfStatementsOnASingleLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowShortLoopsOnASingleLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AllowShortFunctionsOnASingleLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;All&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AlwaysBreakAfterDefinitionReturnType&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AlwaysBreakTemplateDeclarations&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;AlwaysBreakBeforeMultilineStrings&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BreakBeforeBinaryOperators&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;None&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BreakBeforeTernaryOperators&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BreakConstructorInitializersBeforeComma&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BinPackParameters&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BinPackArguments&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ColumnLimit&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;     &lt;span class=&quot;l-Scalar-Plain&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ConstructorInitializerAllOnOneLineOrOnePerLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;DerivePointerAlignment&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ExperimentalAutoDetectBinPacking&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;IndentCaseLabels&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;IndentWrappedFunctionNames&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;IndentFunctionDeclarationAfterType&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;MaxEmptyLinesToKeep&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;KeepEmptyLinesAtTheStartOfBlocks&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;NamespaceIndentation&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;None&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ObjCSpaceAfterProperty&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ObjCSpaceBeforeProtocolList&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyBreakBeforeFirstCallParameter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;19&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyBreakComment&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;300&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyBreakString&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1000&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyBreakFirstLessLess&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;120&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyExcessCharacter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1000000&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PenaltyReturnTypeOnItsOwnLine&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;60&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;PointerAlignment&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Right&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesBeforeTrailingComments&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Cpp11BracedListStyle&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;Standard&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Cpp11&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;IndentWidth&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;     &lt;span class=&quot;l-Scalar-Plain&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;TabWidth&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;8&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;UseTab&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;          &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Never&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;BreakBeforeBraces&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Attach&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesInParentheses&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesInSquareBrackets&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesInAngles&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpaceInEmptyParentheses&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesInCStyleCastParentheses&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpaceAfterCStyleCast&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpacesInContainerLiterals&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpaceBeforeAssignmentOperators&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ContinuationIndentWidth&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;CommentPragmas&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;s&quot;&gt;&amp;#39;^&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;IWYU&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pragma:&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;ForEachMacros&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;   &lt;span class=&quot;p-Indicator&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Q_FOREACH&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BOOST_FOREACH&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;SpaceBeforeParens&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ControlStatements&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;DisableFormat&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;   &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have the &lt;code&gt;.clang-format&lt;/code&gt; configuration file, place it in your home directory.&lt;/p&gt;
+
+&lt;p&gt;You can place it there via &lt;code&gt;Terminal&lt;/code&gt; if you don’t want to change the hidden files setting.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mv .clang-format ~/.clang-format&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;tell-clangformat-to-use-the-configuration-file&quot;&gt;Tell ClangFormat to use the configuration file&lt;/h3&gt;
+
+&lt;p&gt;Now you just need to tell the ClangFormat plugin to use the configuration file for formatting.&lt;/p&gt;
+
+&lt;p&gt;You can do that by choosing &lt;code&gt;Edit-&amp;gt;Clang Format-&amp;gt; File&lt;/code&gt; option from Xcode menu.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/ClangFormat_SubMenu.png&quot; alt=&quot;ClangFormatFileConfiguration&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After this step, when you do (&lt;code&gt;⌘+S&lt;/code&gt;) you can see that the 80 column restriction is not imposed. yay!&lt;/p&gt;
+
+&lt;p&gt;That is because we have specified in the configuration file 0 for the key &lt;code&gt;ColumnLimit&lt;/code&gt;. 0 stands for unlimited characters per line. You can change this value to suit your formatting needs.&lt;/p&gt;
+
+&lt;h3 id=&quot;xalign&quot;&gt;XAlign&lt;/h3&gt;
+
+&lt;p&gt;This is another awesome formatting tool. It can align your &lt;code&gt;=&lt;/code&gt; symbols in a straight line, giving your code an extremely neat look. Have a look the code that is aligned using ClangFormat first, then XAlign after.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objectivec&quot; data-lang=&quot;objectivec&quot;&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;takePhoto&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;UIImagePickerController&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;isSourceTypeAvailable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIImagePickerControllerSourceTypeCamera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;hasLoadedCamera&lt;/span&gt;                 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;bp&quot;&gt;UIImagePickerController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NonRotatingUIImagePickerController&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sourceType&lt;/span&gt;               &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIImagePickerControllerSourceTypeCamera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt;                 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allowsEditing&lt;/span&gt;            &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cameraCaptureMode&lt;/span&gt;        &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIImagePickerControllerCameraCaptureModePhoto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;presentViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;picker&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Select some or all text in a file. Use &lt;code&gt;⌘+⇧+X&lt;/code&gt; shortcut key to pretty align the code.&lt;/p&gt;
+
+&lt;p&gt;After doing this you may want to do &lt;code&gt;Clang Format -&amp;gt; Disable Format on Save&lt;/code&gt; in order to stop Clang Format from changing the alignment.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 16 Mar 2015 00:00:00 +0530</pubDate>
+      </item>
+    
+  </channel>
+</rss>

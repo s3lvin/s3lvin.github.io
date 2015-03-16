@@ -1,0 +1,67 @@
+# SITE CONFIGURATION
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://example.com" # the base hostname & protocol for your site
+
+# THEME-SPECIFIC CONFIGURATION
+theme:
+  # Meta
+  title: Rants of an iOS developer
+  avatar: avatar.png
+  gravatar: f246158eaf91c15148b4281c9535b18f
+  description: “Tech blog by Selvin” # used by search engines
+  
+  # Header and footer text
+  header_text: Perplexity is the beginning of knowledge.
+
+  footer_text: >
+   This work is licensed under <a href="https://github.com/s3lvin/license/blob/master/DWHYWWI.txt">DWHYWWI</a> public license by Selvin (C) 2015
+  
+  # Icons
+  rss: false
+  email_address: mariaselvin@gmail.com
+  behance:
+  bitbucket: 
+  dribbble: 
+  facebook: mariaselvin
+  flickr: 
+  github: s3lvin
+  google_plus: 
+  instagram: 
+  linkedin:  # Full URL
+  pinterest: 
+  reddit: 
+  soundcloud: 
+  stack_exchange:  http://stackoverflow.com/users/569497/selvin
+  steam: 
+  tumblr: 
+  twitter:
+  wordpress: 
+  youtube: 
+  
+  # Scripts
+  google_analytics: UA-60790810-1
+  disqus_shortname: s3lvin
+  katex: true # Enable if using math markup 
+  
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_email: "Email"
+  str_next: "Next"
+  str_prev: "Prev"
+  str_continue_reading: "Continue reading"
+  
+  # Colours, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+
+# PAGINATION
+paginate: 5
+paginate_path: "blog/page:num"
+
+# BUILD SETTINGS
+markdown: kramdown
+
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: :compressed

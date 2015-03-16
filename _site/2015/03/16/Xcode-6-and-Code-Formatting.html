@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+  <head>
+	<meta charset="utf-8">
+	<title>Xcode 6 and Code Formatting | Rants of an iOS developer</title>
+	<meta name="description" content="Code formatting is necessary for readability. Unfortunately Xcode doesn’t provide code formatting tools out of the box unlike some popular IDEs as of now. Th...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+	
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	
+	<!-- Canonical -->
+	<link rel="canonical" href="http://example.com/2015/03/16/Xcode-6-and-Code-Formatting.html">
+	
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Rants of an iOS developer" href="http://example.com/feed.xml" />
+	
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Google Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+  <!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-60790810-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+</head>
+
+
+  <body>
+    <header class="site-header">
+
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="https://secure.gravatar.com/avatar/f246158eaf91c15148b4281c9535b18f?s=100" alt=""/>
+		</a>
+		
+		
+		<h1 class="site-title">
+			<a href="/">Rants of an iOS developer</a>
+		</h1>
+	</div>
+	
+	<nav class="site-nav">
+		<ul>
+			
+				
+			
+				
+				<li>
+					<a class="page-link" href="/about/">About</a>
+				</li>
+				
+			
+				
+			
+				
+			
+				
+			
+
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+
+
+<li>
+	<a href="mailto:mariaselvin@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://www.facebook.com/mariaselvin" title="Follow on Facebook">
+		<i class="fa fa-fw fa-facebook"></i>
+	</a>
+</li>
+
+
+
+
+
+<li>
+	<a href="https://github.com/s3lvin" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="http://stackoverflow.com/users/569497/selvin" title="Follow on Stack Exchange">
+		<i class="fa fa-fw fa-stack-exchange"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+	
+</header>
+
+
+    <div class="content">
+      <article >
+
+  <header style="background-image: url('/')">
+    <h1 class="title">Xcode 6 and Code Formatting</h1>
+    
+    <p class="meta">
+    March 16, 2015
+    
+    </p>
+  </header>
+
+  <section class="post-content">
+    <p>Code formatting is necessary for readability. Unfortunately Xcode doesn’t provide code formatting tools out of the box unlike some popular IDEs as of now. That’s where <a href="https://github.com/travisjeffery/ClangFormat-Xcode">ClangFormat</a> come in handy. In this article I am going to explore some tools to make code formatting and your life easier.</p>
+
+<p>Tables have also been extended from Markdown:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool name</th>
+      <th>What is it?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="http://alcatraz.io/">Alcatraz</a></td>
+      <td>Plugin manager for Xcode</td>
+    </tr>
+    <tr>
+      <td>ClangFormat</td>
+      <td>Code formatting plugin</td>
+    </tr>
+    <tr>
+      <td>XAlign</td>
+      <td>Code alignment plugin</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="installing-alcatraz">Installing Alcatraz</h2>
+
+<p>Paste the following in Terminal.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">curl -fsSL https://raw.github.com/supermarin/Alcatraz/master/Scripts/install.sh <span class="p">|</span> sh</code></pre></div>
+
+<p>Now you can manage your Xcode plugins from <code>Window-&gt;PackageManager</code> menu.</p>
+
+<p><img src="/img/alcatraz_window.png" alt="Alcatraz Plugin Manager" /></p>
+
+<h4 id="search-and-install">Search and Install</h4>
+
+<ul>
+  <li>ClangFormat</li>
+  <li>XAlign</li>
+</ul>
+
+<p>plugins.</p>
+
+<p>After installation restart the Xcode.</p>
+
+<p>Go to <code>Edit-&gt;Clang Format</code> and <code>Edit-&gt;XAlign</code> menus to explore the options those formatters provide.</p>
+
+<h3 id="clangformat">ClangFormat</h3>
+
+<p>ClangFormat is a powerful code formatter which provides various styles of formatting options to choose from.</p>
+
+<p>You might want to enable <code>Edit-&gt;Clang Format-&gt;Enable Format on Save</code>. After enabling this setting simply pressing (<code>⌘+S</code>). You can start using it Vanilla without any additional configuration. But there is a catch!</p>
+
+<p>A word of caution! ClangFormat by default imposes an obsolete 80 column restriction over the length of each line of code. Meaning that if a line of code is exceeding 80 characters then that line will be broken in to multiple lines that fit under 80 characters. Some like it because it’s cozy. To many devs this is a big PIA. I would not personally take sides on whether 80 character restriction is a good or bad guideline. It should be a personal preference.</p>
+
+<p>However, if you like to keep the goodies of Clang format but remove only the 80 column restriction then you have to mess with configurations.</p>
+
+<p>Create a new plain text file named <code>.clang-format</code> and paste the following <code>.yml</code> configuration, or just download <a href="https://drive.google.com/file/d/0B-CC21e7Rr0ZQmE1bGhrXzBJcXM/view?usp=sharing" target="_blank">this file</a>
+(This file will be treated as a hidden file and can not be seen in <code>Finder</code> by default. You need to do</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">defaults write com.apple.finder AppleShowAllFiles YES</code></pre></div>
+<p>in <code>Terminal</code> and then relaunch the Finder in order to see the hidden files.)</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">Language</span><span class="p-Indicator">:</span>        <span class="l-Scalar-Plain">Cpp</span>
+<span class="c1"># BasedOnStyle:  LLVM</span>
+<span class="l-Scalar-Plain">AccessModifierOffset</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">-2</span>
+<span class="l-Scalar-Plain">ConstructorInitializerIndentWidth</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4</span>
+<span class="l-Scalar-Plain">AlignEscapedNewlinesLeft</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AlignTrailingComments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">AllowAllParametersOfDeclarationOnNextLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">AllowShortBlocksOnASingleLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AllowShortCaseLabelsOnASingleLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AllowShortIfStatementsOnASingleLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AllowShortLoopsOnASingleLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AllowShortFunctionsOnASingleLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">All</span>
+<span class="l-Scalar-Plain">AlwaysBreakAfterDefinitionReturnType</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AlwaysBreakTemplateDeclarations</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">AlwaysBreakBeforeMultilineStrings</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">BreakBeforeBinaryOperators</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">None</span>
+<span class="l-Scalar-Plain">BreakBeforeTernaryOperators</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">BreakConstructorInitializersBeforeComma</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">BinPackParameters</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">BinPackArguments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">ColumnLimit</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">0</span>
+<span class="l-Scalar-Plain">ConstructorInitializerAllOnOneLineOrOnePerLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">DerivePointerAlignment</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">ExperimentalAutoDetectBinPacking</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">IndentCaseLabels</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">IndentWrappedFunctionNames</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">IndentFunctionDeclarationAfterType</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">MaxEmptyLinesToKeep</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+<span class="l-Scalar-Plain">KeepEmptyLinesAtTheStartOfBlocks</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">NamespaceIndentation</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">None</span>
+<span class="l-Scalar-Plain">ObjCSpaceAfterProperty</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">ObjCSpaceBeforeProtocolList</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">PenaltyBreakBeforeFirstCallParameter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">19</span>
+<span class="l-Scalar-Plain">PenaltyBreakComment</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">300</span>
+<span class="l-Scalar-Plain">PenaltyBreakString</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1000</span>
+<span class="l-Scalar-Plain">PenaltyBreakFirstLessLess</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">120</span>
+<span class="l-Scalar-Plain">PenaltyExcessCharacter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1000000</span>
+<span class="l-Scalar-Plain">PenaltyReturnTypeOnItsOwnLine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">60</span>
+<span class="l-Scalar-Plain">PointerAlignment</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Right</span>
+<span class="l-Scalar-Plain">SpacesBeforeTrailingComments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+<span class="l-Scalar-Plain">Cpp11BracedListStyle</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">Standard</span><span class="p-Indicator">:</span>        <span class="l-Scalar-Plain">Cpp11</span>
+<span class="l-Scalar-Plain">IndentWidth</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">2</span>
+<span class="l-Scalar-Plain">TabWidth</span><span class="p-Indicator">:</span>        <span class="l-Scalar-Plain">8</span>
+<span class="l-Scalar-Plain">UseTab</span><span class="p-Indicator">:</span>          <span class="l-Scalar-Plain">Never</span>
+<span class="l-Scalar-Plain">BreakBeforeBraces</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Attach</span>
+<span class="l-Scalar-Plain">SpacesInParentheses</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpacesInSquareBrackets</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpacesInAngles</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpaceInEmptyParentheses</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpacesInCStyleCastParentheses</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpaceAfterCStyleCast</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="l-Scalar-Plain">SpacesInContainerLiterals</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">SpaceBeforeAssignmentOperators</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="l-Scalar-Plain">ContinuationIndentWidth</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4</span>
+<span class="l-Scalar-Plain">CommentPragmas</span><span class="p-Indicator">:</span>  <span class="s">&#39;^</span><span class="nv"> </span><span class="s">IWYU</span><span class="nv"> </span><span class="s">pragma:&#39;</span>
+<span class="l-Scalar-Plain">ForEachMacros</span><span class="p-Indicator">:</span>   <span class="p-Indicator">[</span> <span class="nv">foreach</span><span class="p-Indicator">,</span> <span class="nv">Q_FOREACH</span><span class="p-Indicator">,</span> <span class="nv">BOOST_FOREACH</span> <span class="p-Indicator">]</span>
+<span class="l-Scalar-Plain">SpaceBeforeParens</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ControlStatements</span>
+<span class="l-Scalar-Plain">DisableFormat</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">false</span>
+<span class="nn">...</span></code></pre></div>
+
+<p>Once you have the <code>.clang-format</code> configuration file, place it in your home directory.</p>
+
+<p>You can place it there via <code>Terminal</code> if you don’t want to change the hidden files setting.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mv .clang-format ~/.clang-format</code></pre></div>
+
+<h3 id="tell-clangformat-to-use-the-configuration-file">Tell ClangFormat to use the configuration file</h3>
+
+<p>Now you just need to tell the ClangFormat plugin to use the configuration file for formatting.</p>
+
+<p>You can do that by choosing <code>Edit-&gt;Clang Format-&gt; File</code> option from Xcode menu.</p>
+
+<p><img src="/img/ClangFormat_SubMenu.png" alt="ClangFormatFileConfiguration" /></p>
+
+<p>After this step, when you do (<code>⌘+S</code>) you can see that the 80 column restriction is not imposed. yay!</p>
+
+<p>That is because we have specified in the configuration file 0 for the key <code>ColumnLimit</code>. 0 stands for unlimited characters per line. You can change this value to suit your formatting needs.</p>
+
+<h3 id="xalign">XAlign</h3>
+
+<p>This is another awesome formatting tool. It can align your <code>=</code> symbols in a straight line, giving your code an extremely neat look. Have a look the code that is aligned using ClangFormat first, then XAlign after.</p>
+
+<div class="highlight"><pre><code class="language-objectivec" data-lang="objectivec"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">takePhoto</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">([</span><span class="bp">UIImagePickerController</span> <span class="nl">isSourceTypeAvailable</span><span class="p">:</span><span class="n">UIImagePickerControllerSourceTypeCamera</span><span class="p">])</span> <span class="p">{</span>
+<span class="n">hasLoadedCamera</span>                 <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="bp">UIImagePickerController</span> <span class="o">*</span><span class="n">picker</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NonRotatingUIImagePickerController</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="n">picker</span><span class="p">.</span><span class="n">sourceType</span>               <span class="o">=</span> <span class="n">UIImagePickerControllerSourceTypeCamera</span><span class="p">;</span>
+<span class="n">picker</span><span class="p">.</span><span class="n">delegate</span>                 <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+<span class="n">picker</span><span class="p">.</span><span class="n">allowsEditing</span>            <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+<span class="n">picker</span><span class="p">.</span><span class="n">cameraCaptureMode</span>        <span class="o">=</span> <span class="n">UIImagePickerControllerCameraCaptureModePhoto</span><span class="p">;</span>
+
+<span class="p">[</span><span class="nb">self</span> <span class="nl">presentViewController</span><span class="p">:</span><span class="n">picker</span> <span class="nl">animated</span><span class="p">:</span><span class="nb">YES</span> <span class="nl">completion</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Select some or all text in a file. Use <code>⌘+⇧+X</code> shortcut key to pretty align the code.</p>
+
+<p>After doing this you may want to do <code>Clang Format -&gt; Disable Format on Save</code> in order to stop Clang Format from changing the alignment.</p>
+
+  </section>
+  
+</article>
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+	var disqus_shortname = 's3lvin'; 
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+    </div>
+
+    <script src="/js/main.js"></script>
+
+
+<footer class="site-footer">
+	<p class="text">This work is licensed under <a href="https://github.com/s3lvin/license/blob/master/DWHYWWI.txt">DWHYWWI</a> public license by Selvin (C) 2015
+</p>
+</footer>
+
+  </body>
+  
+</html>
