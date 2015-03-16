@@ -5,15 +5,13 @@
     <atom:link href="http://example.com/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://example.com/</link>
     <description>“Tech blog by Selvin”</description>
-    <pubDate>Mon, 16 Mar 2015 17:40:50 +0530</pubDate>
+    <pubDate>Mon, 16 Mar 2015 22:54:17 +0530</pubDate>
     
       <item>
         <title>Xcode 6 and Code Formatting</title>
         <link>http://example.com/2015/03/16/Xcode-6-and-Code-Formatting.html</link>
         <guid isPermaLink="true">http://example.com/2015/03/16/Xcode-6-and-Code-Formatting.html</guid>
         <description>&lt;p&gt;Code formatting is necessary for readability. Unfortunately Xcode doesn’t provide code formatting tools out of the box unlike some popular IDEs as of now. That’s where &lt;a href=&quot;https://github.com/travisjeffery/ClangFormat-Xcode&quot;&gt;ClangFormat&lt;/a&gt; come in handy. In this article I am going to explore some tools to make code formatting and your life easier.&lt;/p&gt;
-
-&lt;p&gt;Tables have also been extended from Markdown:&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;

@@ -9,8 +9,6 @@ tags:
 
 Code formatting is necessary for readability. Unfortunately Xcode doesn't provide code formatting tools out of the box unlike some popular IDEs as of now. That's where [ClangFormat](https://github.com/travisjeffery/ClangFormat-Xcode) come in handy. In this article I am going to explore some tools to make code formatting and your life easier.
 
-Tables have also been extended from Markdown:
-
 Tool name                       | What is it?
 -------------                   | -------------
 [Alcatraz](http://alcatraz.io/) | Plugin manager for Xcode
